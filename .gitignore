@@ -1,0 +1,6 @@
+vue-test
+node/node_modules
+node/public
+vue/node_modules
+vue/dist
+vue/public
