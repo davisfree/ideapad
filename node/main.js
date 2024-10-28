@@ -36,9 +36,15 @@ app.use(post.any());
 
 const responseQuery = require("./models/response-query");
 
-app.post("/image/all", (request, response) => {
-  const sql = "SELECT * FROM images WHERE deleted=0;";
+app.get("/image/all", (request, response) => {
+  const sql = "SELECT COUNT(*) AS total FROM images WHERE deleted=0";
   responseQuery(response, sql);
+});
+
+app.post("/image/all", (request, response) => {
+  const sql = "SELECT * FROM images WHERE deleted=0 LIMIT ?,?;";
+  const params = [request.body.start, request.body.count];
+  responseQuery(response, sql, params);
 });
 
 app.post("/image/upload", (request, response) => {

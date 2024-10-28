@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <NavBar @path="onPath" />
-    <component :is="path"></component>
+    <component :is="path" :maxCount="5"></component>
   </div>
 </template>
 
